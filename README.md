@@ -1,7 +1,7 @@
-# My TODO MVS
+# My TODO MVC
 
-Rust based implementation of well known learning application to playground with some stack.
-The application itself aim to manage a list of tasks. We will complicate it as needed in order to try the specific  tecnologies that we are going to learn. In particular I'd like to learn how to manage in rust the following topics:
+Rust based implementation of the well known [todoMVC](https://todomvc.com/) application. The main purpose is to learn rust doing something concrete.
+In particular I'd like to learn how to manage in rust the following topics:
 - **Workspace monorepo**
 - A **RESTful API Server** with OpenAPI specification
 - A **Web App** that call the **RESTful API**
@@ -12,7 +12,7 @@ The application itself aim to manage a list of tasks. We will complicate it as n
 
 I'll proceed in micro-steps with a branch per each step, in order to have a version of the repo in each meaningful moment.
 
-## Requirement
+## Requirement \#1: basic "Hello World" api server
 - Build an **API Server** that is able to return a json response for health request like the following:
 ```
 curl -X GET http://localhost:8080/health
