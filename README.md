@@ -10,7 +10,8 @@ In particular I'd like to learn how to manage in rust the following topics:
 - An **API Gateway** to manage the **RESTful API** access and separate **Authentication** and **Authorization** logic from the business code of the **RESTful API**
 - A **Policy Engine** like **Open Policy Agent** in order to manage **Authorization** behaviour without changing code
 
-I'll proceed in micro-steps with a branch per each step, in order to have a version of the repo in each meaningful moment.
+~~I'll proceed in micro-steps with a branch per each step, in order to have a version of the repo in each meaningful moment.~~
+I'll proceed in steps, tagging each significant step.
 
 ## Requirement \#1: basic "Hello World" api server
 - Build an **API Server** that is able to return a json response for health request like the following:
