@@ -3,9 +3,9 @@ permissions:
   contents: read
 on:
   push:
-    branches: ["main", "add_a_basic_api_server"]
+    branches: ["main"]
   pull_request:
-    branches: ["main", "add_a_basic_api_server"]
+    branches: ["main"]
 
 env:
   CARGO_TERM_COLOR: always
