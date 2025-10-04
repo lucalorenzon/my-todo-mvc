@@ -1,4 +1,5 @@
-use axum::{Router, routing::get};
+use axum::{Json, Router, http::StatusCode, routing::get};
+use serde_json::json;
 use thiserror::Error;
 use tokio::{io, net::TcpListener};
 
@@ -9,7 +10,10 @@ pub enum ServerError {
 }
 
 pub fn build_routes() -> Router {
-    Router::new().route("/", get(|| async { "Hello, World!" }))
+    Router::new().route(
+        "/health",
+        get(|| async { (StatusCode::OK, Json(json!({ "status": "ok" }))) }),
+    )
 }
 
 pub async fn get_tcp_listener(addr: &str) -> Result<TcpListener, ServerError> {

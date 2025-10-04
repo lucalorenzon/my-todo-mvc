@@ -1,8 +1,28 @@
 use reqwest::Client;
+use serde_json::json;
 use todo_api::{ServerError, build_routes, get_tcp_listener};
 
 #[tokio::test]
-async fn should_return_hello_world_on_root_path() {
+async fn should_return_status_ok_on_health_path() {
+    let running_port = spawn_app().await.expect("Cannot run spawn server");
+    let http_client = Client::new();
+    let response = http_client
+        .get(format!("http://localhost:{}/health", running_port))
+        .send()
+        .await
+        .expect("Failed to execute request");
+    assert!(response.status().is_success());
+    assert_eq!(
+        json!({ "status": "ok" }),
+        response
+            .json::<serde_json::Value>()
+            .await
+            .expect("Impossible to read the body of the response")
+    );
+}
+
+#[tokio::test]
+async fn should_return_404_on_all_not_health_path() {
     let running_port = spawn_app().await.expect("Cannot run spawn server");
     let http_client = Client::new();
     let response = http_client
@@ -10,13 +30,13 @@ async fn should_return_hello_world_on_root_path() {
         .send()
         .await
         .expect("Failed to execute request");
-    assert!(response.status().is_success());
-    assert_eq!(
-        "Hello, World!",
+    assert!(response.status().is_client_error());
+    assert!(
         response
             .text()
             .await
             .expect("Impossible to read the body of the response")
+            .is_empty()
     );
 }
 

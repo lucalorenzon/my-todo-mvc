@@ -16,7 +16,7 @@ I'll proceed in steps, tagging each significant step.
 ## Requirement \#1: basic "Hello World" api server
 - Build an **API Server** that is able to return a json response for health request like the following:
 ```
-curl -X GET http://localhost:8080/health
+curl -X GET http://localhost:3000/health
 ```
 
 response:
@@ -28,7 +28,6 @@ Content-Length: 22
 {"status": "ok"}
 ```
 - All other requests should return an empty body with status code 404
-- If request to `/health` has also parameters it should return an empty body with status code 400
 
 It should be deployed in aws ecs service. So also all the necessary infrastructure and deploy pipeline are in scope.
 It should be monitored by Opentelemetry and Grafana.
