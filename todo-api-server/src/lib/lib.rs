@@ -2,6 +2,7 @@ use axum::{Json, Router, http::StatusCode, routing::get};
 use serde_json::json;
 use thiserror::Error;
 use tokio::{io, net::TcpListener};
+use tracing::instrument;
 
 #[derive(Error, Debug)]
 pub enum ServerError {
@@ -16,6 +17,7 @@ pub fn build_routes() -> Router {
     )
 }
 
+#[instrument]
 pub async fn get_tcp_listener(addr: &str) -> Result<TcpListener, ServerError> {
     Ok(TcpListener::bind(addr).await?)
 }
